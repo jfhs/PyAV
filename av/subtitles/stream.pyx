@@ -1,6 +1,7 @@
 cimport libav as lib
 
 from av.frame cimport Frame
+from libc.stdint cimport uint8_t, int64_t
 from av.subtitles.subtitle cimport SubtitleProxy, SubtitleSet
 from av.packet cimport Packet
 from av.utils cimport err_check
@@ -27,7 +28,7 @@ cdef class SubtitleStream(Stream):
             self._codec_context,
             buffer,
             max_sz,
-            sub.proxy,
+            sub.proxy.struct,
         ))
         cdef Packet packet = Packet()
         packet.struct.data = buffer

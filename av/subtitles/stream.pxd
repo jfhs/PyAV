@@ -3,4 +3,4 @@ from av.stream cimport Stream
 
 cdef class SubtitleStream(Stream):
 
-    cpdef encode(self, Subtitle)
+    cpdef encode(self, SubtitleSet)
