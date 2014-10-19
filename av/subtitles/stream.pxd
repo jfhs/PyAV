@@ -4,4 +4,4 @@ from av.subtitles.subtitle import SubtitleSet
 
 cdef class SubtitleStream(Stream):
 
-    cpdef encode(self, SubtitleSet sub)
+    cpdef encode(self, SubtitleSet)
