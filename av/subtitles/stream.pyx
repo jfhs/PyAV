@@ -27,7 +27,7 @@ cdef class SubtitleStream(Stream):
             self._codec_context,
             buffer,
             max_sz,
-            sub,
+            sub.proxy,
         ))
         cdef Packet packet = Packet()
         packet.struct.data = buffer
