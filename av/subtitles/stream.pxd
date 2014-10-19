@@ -1,5 +1,5 @@
 from av.stream cimport Stream
-from av.subtitles.subtitle import SubtitleSet
+from av.subtitles.subtitle cimport SubtitleSet
 
 
 cdef class SubtitleStream(Stream):
