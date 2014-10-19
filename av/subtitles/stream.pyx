@@ -19,3 +19,20 @@ cdef class SubtitleStream(Stream):
         
         return SubtitleSet(proxy)
 
+    cdef encode(self, SubtitleSet sub):
+
+        cdef int max_sz = 1024*1024
+        cdef uint8_t* buffer = <uint8_t*>lib.av_malloc(max_sz)
+        cdef int sz = err_check(lib.avcodec_encode_subtitle(
+            self._codec_context,
+            buffer,
+            max_sz,
+            sub,
+        ))
+        cdef Packet packet = Packet()
+        packet.struct.data = buffer
+        packet.struct.size = sz
+        packet.struct.pts = sub.proxy.pts
+        packet.struct.duration = sub.proxy.end_display_time
+        packet.struct.dts = packet.struct.dts
+        return packet

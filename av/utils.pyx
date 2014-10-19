@@ -36,11 +36,13 @@ cdef dict avdict_to_dict(lib.AVDictionary *input):
     
     cdef lib.AVDictionaryEntry *element = NULL
     cdef dict output = {}
+    cdef bytes value
     while True:
         element = lib.av_dict_get(input, "", element, lib.AV_DICT_IGNORE_SUFFIX)
         if element == NULL:
             break
-        output[element.key] = element.value
+        value = element.value
+        output[element.key] = value
     return output
 
 
