@@ -24,6 +24,7 @@ cdef class SubtitleStream(Stream):
 
         cdef int max_sz = 1024*1024
         cdef uint8_t* buffer = <uint8_t*>lib.av_malloc(max_sz)
+        buffer[0] = 1
         cdef int sz = err_check(lib.avcodec_encode_subtitle(
             self._codec_context,
             buffer,
