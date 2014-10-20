@@ -25,12 +25,12 @@ cdef class SubtitleStream(Stream):
         self._weak_container().start_encoding()
         cdef int max_sz = 1024*1024
         cdef uint8_t* buffer = <uint8_t*>lib.av_malloc(max_sz)
-        cdef int sz = err_check(lib.avcodec_encode_subtitle(
+        cdef int sz = lib.avcodec_encode_subtitle(
             self._codec_context,
             buffer,
             max_sz,
             &(sub.proxy.struct),
-        ))
+        )
         cdef Packet packet = Packet()
         packet.struct.data = buffer
         packet.struct.size = sz
