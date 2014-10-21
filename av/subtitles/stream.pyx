@@ -34,7 +34,7 @@ cdef class SubtitleStream(Stream):
         cdef Packet packet = Packet()
         packet.struct.data = buffer
         packet.struct.size = sz
-        packet.struct.pts = sub.proxy.pts
-        packet.struct.duration = sub.proxy.end_display_time
+        packet.struct.pts = sub.proxy.struct.pts
+        packet.struct.duration = sub.proxy.struct.end_display_time
         packet.struct.dts = packet.struct.dts
         return packet
