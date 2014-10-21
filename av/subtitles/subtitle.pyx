@@ -28,6 +28,7 @@ cdef class SubtitleSet(object):
         def __get__(self): return self.proxy.struct.end_display_time
     property pts:
         def __get__(self): return self.proxy.struct.pts
+        def __set__(self, value): self.proxy.struct.pts = value
 
     def __len__(self):
         return len(self.rects)
